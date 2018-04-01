@@ -1,0 +1,15 @@
+//
+// The Authorization Credential Service (ZCS) API
+//
+name ZCS;
+use "rdl";
+version 1;
+namespace com.yahoo.athenz.zcs;
+
+include "../../../../../core/zcs/src/main/rdl/ZCS.rdl";
+
+// Get RDL Schema
+resource rdl.Schema GET "/schema" {
+    authenticate;
+    expected OK;
+}

@@ -1,0 +1,13 @@
+include "Names.tdl";
+
+//The representation for SAML login message object
+type SamlLogin Struct {
+    Int32 code; // message code
+    String message; // SAML login message of the server
+}
+
+//The representation for SAML logout message object
+type SamlLogout Struct {
+    Int32 code; // message code
+    String message; // SAML logout message of the server
+}

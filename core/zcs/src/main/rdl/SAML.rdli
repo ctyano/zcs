@@ -1,0 +1,26 @@
+include "SAML.tdl";
+
+type URL String (pattern="^(http|https)://({SimpleName}\\.)+{SimpleName}(/[a-zA-Z0-9_\\./?%&=]*)?$");
+
+resource SamlLogin GET "/saml/login?url={url}" {
+    URL url;
+    authenticate;
+    String location (header="Location", out); //return location for subsequent patch requests
+    exceptions {
+        ResourceError BAD_REQUEST;
+        ResourceError FORBIDDEN;
+        ResourceError UNAUTHORIZED;
+        ResourceError TOO_MANY_REQUESTS;
+    }
+}
+
+resource SamlLogout GET "/saml/logout?url={url}" {
+    URL url;
+    String location (header="Location", out); //return location for subsequent patch requests
+    exceptions {
+        ResourceError BAD_REQUEST;
+        ResourceError FORBIDDEN;
+        ResourceError UNAUTHORIZED;
+        ResourceError TOO_MANY_REQUESTS;
+    }
+}

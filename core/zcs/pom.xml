@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.yahoo.athenz</groupId>
+    <artifactId>athenz</artifactId>
+    <version>1.7.43</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>athenz-zcs-core</artifactId>
+  <packaging>jar</packaging>
+  <name>athenz-zcs-core</name>
+  <description>Core ZCS Interfaces</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.yahoo.rdl</groupId>
+      <artifactId>rdl-java</artifactId>
+      <version>${rdl.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>generate-sources</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>bash</executable>
+          <arguments>
+            <argument>scripts/make_stubs.sh</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>bintray-athenz-zcs-core-repo</id>
+      <url>https://api.bintray.com/maven/yahoo/maven/athenz-zcs-core/;publish=1</url>
+    </repository>
+  </distributionManagement>
+
+</project>

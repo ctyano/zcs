@@ -1,0 +1,9 @@
+*~
+.project
+.settings
+META-INF
+build.properties
+.classpath
+target
+core/zcs/bin/
+servers/zcs/bin/
